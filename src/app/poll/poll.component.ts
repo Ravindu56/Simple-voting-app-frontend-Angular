@@ -13,6 +13,14 @@ import { CommonModule } from '@angular/common';
 })
 export class PollComponent implements OnInit {
 
+  newPoll: Poll = {
+    // id: 0,
+    question: '',
+    options: [
+      { optionText: '', votesCount: 0 },
+      { optionText: '', votesCount: 0 }
+  ] };
+
   polls: Poll[] = [];
 
   constructor(private pollService: PollService) {}
@@ -30,5 +38,31 @@ export class PollComponent implements OnInit {
         console.error("Error loading polls:", err);
       }
     });
+  }
+
+  createPoll() {
+    this.pollService.createPoll(this.newPoll).subscribe({
+      next: (createdPoll) => {
+        this.polls.push(createdPoll);
+        this.resetPollForm();
+      },
+      error: (err) => {
+        console.error("Error creating poll:", err);
+      }
+    });
+  }
+
+  resetPollForm() {
+    this.newPoll = {
+      // id: 0,
+      question: '',
+      options: [
+        { optionText: '', votesCount: 0 },
+        { optionText: '', votesCount: 0 }
+    ] };
+  }
+
+  trackByIndex(index: number) {
+    return index;
   }
 }

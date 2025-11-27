@@ -11,7 +11,7 @@ export class Poll {
 
   constructor(private http: HttpClient) { }
 
-  cretePoll(poll: PollData): Observable<PollData> {
+  createPoll(poll: PollData): Observable<PollData> {
     return this.http.post<PollData>(`${this.baseUrl}`, poll);
   }
 
