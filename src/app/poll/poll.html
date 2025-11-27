@@ -29,9 +29,14 @@
           required
           />
 
+          <button type="button" class="btn btn-danger mt-2 mx-2"
+          (click)="newPoll.options.splice(i, 1)" *ngIf="newPoll.options.length > 2">
+            Remove
+          </button>
+
         </div>
       </div>
-      <button type="button" class="btn btn-secondary mx-2">Add Option</button>
+      <button type="button" class="btn btn-secondary mx-2" (click)="addOption()">Add Option</button>
       <button type="submit" class="btn btn-primary" (click)="createPoll()">Create Poll</button>
     </form>
 
@@ -47,10 +52,8 @@
         (click)="vote(poll.id,i)">
           {{ option.optionText }} ({{option.votesCount}} votes)
         </button>
-
       </div>
     </div>
-
   </div>
 </div>
 </div>

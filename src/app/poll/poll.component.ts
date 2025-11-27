@@ -40,6 +40,12 @@ export class PollComponent implements OnInit {
     });
   }
 
+  addOption() {
+    this.newPoll.options.push({ optionText: '', votesCount: 0 });
+  }
+
+
+
   vote(pollId: number | undefined, optionIndex: number) {
     if (pollId === undefined) {
       console.error("Poll ID is undefined");
