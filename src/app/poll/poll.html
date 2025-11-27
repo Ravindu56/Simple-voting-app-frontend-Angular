@@ -1,1 +1,40 @@
-<p>poll works!</p>
+<div class="text-center">
+  <h1 class="mt-4">Welcome to the Poll Application</h1>
+</div>
+
+<div class="container mt-4">
+  <h2>Create a New Poll</h2>
+  <form>
+    <div class="mb-3">
+      <label for="question" class="form-label">Poll Question</label>
+      <input
+
+      type="text"
+      class="form-control"
+      id="question"
+      placeholder="Enter your poll question here"/>
+    </div>
+    <div class="mb-3">
+      <label for="options" class="form-label">Options (comma separated)</label>
+      <input type="text" class="form-control" id="options" placeholder="Option 1, Option 2, Option 3">
+    </div>
+    <button type="submit" class="btn btn-primary">Create Poll</button>
+  </form>
+
+</div>
+
+<h2 class="mt-4 text-container text-center">Available Polls</h2>
+<div class="poll-container poll-list">
+  <div *ngFor="let poll of polls" class="card mb-3 border rounded p-3 mb-4">
+    <h4 class="card-header">{{ poll.question }}</h4>
+    <div class="option-list">
+      <div *ngFor="let option of poll.options; let i = index">
+        <button class="btn btn-outline-primary">
+          {{ option.optionText }} ({{option.votesCount}} votes)
+        </button>
+
+      </div>
+    </div>
+
+  </div>
+</div>
