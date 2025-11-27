@@ -43,7 +43,8 @@
     <h4 class="card-header mb-2">{{ poll.question }}</h4>
     <div class="option-list">
       <div *ngFor="let option of poll.options; let i = index">
-        <button class="btn btn-outline-primary mx-2 my-2">
+        <button class="btn btn-outline-primary mx-2 my-2"
+        (click)="vote(poll.id,i)">
           {{ option.optionText }} ({{option.votesCount}} votes)
         </button>
 

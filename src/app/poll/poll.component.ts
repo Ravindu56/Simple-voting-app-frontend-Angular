@@ -40,6 +40,24 @@ export class PollComponent implements OnInit {
     });
   }
 
+  vote(pollId: number | undefined, optionIndex: number) {
+    if (pollId === undefined) {
+      console.error("Poll ID is undefined");
+      return;
+    }
+    this.pollService.vote(pollId, optionIndex).subscribe({
+      next: () => {
+        const poll = this.polls.find(p => p.id === pollId);
+        if (poll) {
+          poll.options[optionIndex].votesCount += 1;
+        }
+      },
+      error: (err) => {
+        console.error("Error voting:", err);
+      }
+    });
+  }
+
   createPoll() {
     this.pollService.createPoll(this.newPoll).subscribe({
       next: (createdPoll) => {
